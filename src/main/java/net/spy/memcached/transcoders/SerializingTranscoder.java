@@ -22,10 +22,9 @@
 
 package net.spy.memcached.transcoders;
 
-import java.util.Date;
-
 import net.spy.memcached.CachedData;
-import net.spy.memcached.util.StringUtils;
+
+import java.util.Date;
 
 /**
  * Transcoder that serializes and compresses objects.
@@ -131,9 +130,6 @@ public class SerializingTranscoder extends BaseSerializingTranscoder implements
     int flags = 0;
     if (o instanceof String) {
       b = encodeString((String) o);
-      if (StringUtils.isJsonObject((String) o)) {
-        return new CachedData(flags, b, getMaxSize());
-      }
     } else if (o instanceof Long) {
       b = tu.encodeLong((Long) o);
       flags |= SPECIAL_LONG;
